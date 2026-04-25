@@ -1,34 +1,39 @@
-<!-- dashboard.blade.php -->
-
 @extends('layouts.master')
 
 @section('title', 'Dashboard')
 
 @section('content')
-    <h1>Comentários Enviados</h1>
 
-    @if($feedbacks->isEmpty())
-        <p>Não há comentários enviados ainda.</p>
-    @else
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID da Geladeira</th>
-                    <th>Comentário</th>
-                    <th>Avaliação (Estrelas)</th>
-                    <th>Data de Envio</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($feedbacks as $feedback)
-                    <tr>
-                        <td>{{ $feedback->geladeira_id }}</td>
-                        <td>{{ $feedback->comentario }}</td>
-                        <td>{{ $feedback->estrela }}</td>
-                        <td>{{ $feedback->created_at }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @endif
+<div style="display:flex; justify-content: space-between; align-items:center;">
+    <h2>Dashboard</h2>
+
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="btn btn-danger">
+            Logout
+        </button>
+    </form>
+</div>
+
+<hr>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
+
+    <div style="padding:20px; border:1px solid #ccc; border-radius:10px;">
+        <h3>💰 Entradas</h3>
+        <p>R$ {{ $entradas ?? 0 }}</p>
+    </div>
+
+    <div style="padding:20px; border:1px solid #ccc; border-radius:10px;">
+        <h3>💸 Saídas</h3>
+        <p>R$ {{ $saidas ?? 0 }}</p>
+    </div>
+
+    <div style="padding:20px; border:1px solid #ccc; border-radius:10px;">
+        <h3>📊 Lucro</h3>
+        <p>R$ {{ $lucro ?? 0 }}</p>
+    </div>
+
+</div>
+
 @endsection

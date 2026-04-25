@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->integer('last_activity');
+        Schema::create('gastos', function (Blueprint $table) {
+            $table->id();
+            $table->string('descricao');
+            $table->decimal('valor', 10, 2);
+            $table->date('data');
+            $table->timestamps();
         });
-        
     }
 
     /**
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('gastos');
     }
 };

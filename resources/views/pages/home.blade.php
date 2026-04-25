@@ -1,77 +1,31 @@
-<!-- resources/views/pages/home.blade.php -->
 @extends('layouts.master')
 
 @section('title', 'Home')
 
 @section('content')
-    <style>
-        /* Estilos específicos para a home */
-        h1 {
-            text-align: center;
-            color: #007bff;
-            margin-bottom: 30px;
-        }
 
-        .card {
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+<h1 style="text-align:center; margin-bottom: 30px;">
+    Sistema da Loja
+</h1>
 
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        }
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
 
-        .card-title {
-            font-size: 1.5rem;
-            color: #007bff;
-        }
+    <a href="/atendimentos" class="btn btn-success btn-lg">
+        💰 Atendimentos
+    </a>
 
-        .card-body {
-            padding: 20px;
-        }
+    <a href="/gastos" class="btn btn-danger btn-lg">
+        💸 Gastos
+    </a>
 
-        .row {
-            margin-top: 20px;
-        }
+    <a href="/produtos" class="btn btn-primary btn-lg">
+        📦 Estoque
+    </a>
 
-        .col-md-4 {
-            margin-bottom: 20px;
-        }
+    <a href="/dashboard" class="btn btn-dark btn-lg">
+        🔐 Área do Admin
+    </a>
 
-        .card img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
+</div>
 
-        /* Responsividade */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .col-md-4 {
-                margin-bottom: 15px;
-            }
-        }
-    </style>
-
-    <h1>Ofertas para você</h1>
-    <div class="row">
-        @foreach($featuredPosts as $post)
-            <div class="col-md-4">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $post['title'] }}</h5>
-                        <p class="card-text">{{ $post['content'] }}</p>
-                        <a href="{{ route('geladeira.form', ['id' => $post['id']]) }}">
-                            <img src="{{ asset('https://cdn.leroymerlin.com.br/categories/geladeira_1f60_300x300.jpg') }}" alt="Geladeira">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
 @endsection
