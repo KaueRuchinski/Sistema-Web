@@ -14,7 +14,9 @@ use App\Models\Gasto;
 | PÁGINA INICIAL (LIVRE)
 |--------------------------------------------------------------------------
 */
-Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/', [PageController::class, 'home'])
+    ->middleware('auth')
+    ->name('home');
 
 /*
 |--------------------------------------------------------------------------

@@ -9,8 +9,22 @@
 </h1>
 
 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+    <div style="display:flex; justify-content: space-between; align-items:center; margin-bottom:20px;">
 
-    <a href="/atendimentos" class="btn btn-success btn-lg">
+    <div>
+        <strong>Bem-vindo, {{ auth()->user()->name }}</strong>
+    </div>
+
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="btn btn-secondary">
+            🚪 Sair
+        </button>
+    </form>
+
+</div>
+
+<a href="/atendimentos" class="btn btn-success btn-lg">
         💰 Atendimentos
     </a>
 
@@ -22,10 +36,12 @@
         📦 Estoque
     </a>
 
-    <a href="/dashboard" class="btn btn-dark btn-lg">
-        🔐 Área do Admin
-    </a>
-
-</div>
+    @auth
+        @if(auth()->user()->tipo === 'admin')
+            <a href="/dashboard" class="btn btn-dark btn-lg">
+                🔒 Área do Admin
+            </a>
+        @endif
+    @endauth
 
 @endsection
