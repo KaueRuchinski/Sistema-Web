@@ -17,6 +17,27 @@ class GastoController extends Controller
         return view('gastos.index', compact('gastos', 'totalHoje', 'totalMes'));
     }
 
+    public function edit($id)
+    {
+        $gasto = \App\Models\Gasto::findOrFail($id);
+        
+        return view('gastos.edit', compact('gasto'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $gasto = \App\Models\Gasto::findOrFail($id);
+
+        $gasto->update([
+            'descricao' => $request->descricao,
+            'valor' => $request->valor,
+            'data' => $request->data,
+        ]);
+
+        return redirect('/gastos')->with('success', 'Atualizado com sucesso!');
+    }
+
     public function store(Request $request)
     {
         Gasto::create([

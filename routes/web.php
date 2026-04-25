@@ -32,15 +32,17 @@ require __DIR__.'/auth.php';
 */
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', function () {
+Route::get('/dashboard', function () {
 
-        $entradas = Atendimento::sum('valor');
-        $saidas = Gasto::sum('valor');
-        $lucro = $entradas - $saidas;
+    $entradas = Atendimento::sum('valor');
+    $saidas = Gasto::sum('valor');
+    $lucro = $entradas - $saidas;
 
-        return view('admin.dashboard', compact('entradas', 'saidas', 'lucro'));
+    $atendimentos = Atendimento::latest()->take(5)->get();
 
-    })->name('dashboard');
+    return view('admin.dashboard', compact('entradas', 'saidas', 'lucro', 'atendimentos'));
+
+})->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -55,9 +57,13 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/atendimentos', [AtendimentoController::class, 'index']);
 Route::post('/atendimentos', [AtendimentoController::class, 'store']);
+Route::get('/atendimentos/{id}/edit', [AtendimentoController::class, 'edit']);
+Route::put('/atendimentos/{id}', [AtendimentoController::class, 'update']);
 
 Route::get('/gastos', [GastoController::class, 'index']);
 Route::post('/gastos', [GastoController::class, 'store']);
+Route::get('/gastos/{id}/edit', [GastoController::class, 'edit']);
+Route::put('/gastos/{id}', [GastoController::class, 'update']);
 
 Route::get('/produtos', [ProdutoController::class, 'index']);
 Route::post('/produtos', [ProdutoController::class, 'store']);

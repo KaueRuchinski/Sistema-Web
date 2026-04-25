@@ -55,6 +55,9 @@
     <button type="submit" class="btn btn-success">
         Salvar Atendimento
     </button>
+
+
+    
 </form>
 
 <hr>
@@ -68,6 +71,7 @@
         <th>Tipo</th>
         <th>Valor</th>
         <th>Observação</th>
+        <th>Ações</th> <!-- NOVO -->
     </tr>
 
     @foreach($atendimentos as $a)
@@ -76,6 +80,12 @@
             <td>{{ $a->tipo }}</td>
             <td>R$ {{ $a->valor }}</td>
             <td>{{ $a->observacao }}</td>
+
+            <td>
+                <a href="/atendimentos/{{ $a->id }}/edit" class="btn btn-warning">
+                    ✏️ Editar
+                </a>
+            </td>
         </tr>
     @endforeach
 

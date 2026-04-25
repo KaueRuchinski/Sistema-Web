@@ -56,6 +56,7 @@
         <th>Data</th>
         <th>Descrição</th>
         <th>Valor</th>
+        <th>Ações</th> <!-- NOVO -->
     </tr>
 
     @foreach($gastos as $g)
@@ -63,6 +64,12 @@
             <td>{{ $g->data }}</td>
             <td>{{ $g->descricao }}</td>
             <td>R$ {{ $g->valor }}</td>
+
+            <td style="display:flex; gap:10px;">
+                <a href="/gastos/{{ $g->id }}/edit" class="btn btn-warning">
+                    ✏️ Editar
+                </a>
+            </td>
         </tr>
     @endforeach
 

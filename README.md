@@ -64,3 +64,48 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+# 🛒 Sistema Web para Loja de Eletrônicos
+
+Sistema desenvolvido para controle de uma loja, permitindo gerenciar:
+
+- 💰 Atendimentos (entradas de dinheiro)
+- 💸 Gastos
+- 📦 Estoque de produtos
+- 🔐 Área administrativa com controle de acesso por tipo de usuário
+
+---
+
+# 🚀 Tecnologias Utilizadas
+
+- PHP (Laravel)
+- MySQL
+- Node.js + NPM
+- Vite (frontend)
+- Docker (opcional)
+
+---
+
+# ⚙️ Pré-requisitos
+
+Antes de rodar o projeto, você precisa ter instalado:
+
+- PHP 8.x
+- Composer
+- Node.js e NPM
+- MySQL
+
+OU
+
+- Docker + Docker Compose (recomendado)
+
+---
+
+# 📥 Instalação do Projeto
+
+## 🔹 1. Clonar o repositório
+
+```bash
+git clone https://github.com/wesleykauan55/Sistema-Web-para-loja-de-Eletrons.git
+cd feedback

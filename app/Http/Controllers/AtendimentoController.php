@@ -17,6 +17,27 @@ class AtendimentoController extends Controller
             return view('atendimentos.index', compact('atendimentos', 'totalHoje', 'totalMes'));
         }
 
+
+    public function edit($id)
+        {
+            $atendimento = \App\Models\Atendimento::findOrFail($id);
+            return view('atendimentos.edit', compact('atendimento'));
+        }
+
+    public function update(Request $request, $id)
+        {
+            $atendimento = \App\Models\Atendimento::findOrFail($id);
+
+            $atendimento->update([
+                'tipo' => $request->tipo,
+                'valor' => $request->valor,
+                'data' => $request->data,
+                'observacao' => $request->observacao,
+            ]);
+
+            return redirect('/atendimentos')->with('success', 'Atualizado com sucesso!');
+        }
+
     public function store(Request $request)
         {
             Atendimento::create([
