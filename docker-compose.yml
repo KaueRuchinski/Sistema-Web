@@ -1,0 +1,36 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sistema-assistencia-app
+    container_name: app
+    restart: unless-stopped
+    working_dir: /var/www/
+    ports:
+      - "8000:8000"    # <-- ADICIONE ESTAS DUAS LINHAS AQUI!
+    volumes:
+      - ./:/var/www
+    networks:
+      - assistencia-network
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: bd_laravel
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - assistencia-network
+
+networks:
+  assistencia-network:
+    driver: bridge
+
+volumes:
+  dbdata:
